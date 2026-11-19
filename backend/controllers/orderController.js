@@ -1,7 +1,5 @@
 const Order = require('../model/Order')
 
-const sendEmail = require('../utils/sendEmail')
-
 const createOrder = async (req,res) => {
   try{
     const {items, totalAmount, address, paymentId } = req.body
@@ -17,9 +15,9 @@ const createOrder = async (req,res) => {
         paymentId
       })
       await order.save()
-      const message = `Dear ${req.user.name},\n\nThank you for your order! Your order has been successfully created with the following details:\n\norder ID: ${order._id}\nTotal Amount: ${totalAmount}\nShipping Address: ${address}\n\nWe will notify you once your order is shipped.\n\nBest regards,\nZentro Team`
+       
 
-      await sendEmail(req.user.email, 'order created', message)
+      
       res.status(201).json({ message: ' order created successfully ', order})
     }
   }catch(error){
