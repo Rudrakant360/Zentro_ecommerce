@@ -15,8 +15,6 @@ const createOrder = async (req,res) => {
         paymentId
       })
       await order.save()
-       
-
       
       res.status(201).json({ message: ' order created successfully ', order})
     }
